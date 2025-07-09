@@ -74,3 +74,14 @@ examples/hardware_fingerprint.json
 # Temporary files
 *.tmp
 *.temp
+
+# Documentation and publishing files
+docs/
+
+# Test files
+test-*.js
+test-*.mjs
+test-*.ts
+*.test.js
+*.test.mjs
+*.test.ts

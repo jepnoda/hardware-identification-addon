@@ -5,7 +5,7 @@
  * This module provides access to various hardware identifiers including CPU ID,
  * motherboard serial, BIOS serial, disk serials, and MAC addresses.
  * 
- * @author Your Name
+ * @author Jeperson Noda
  * @version 1.0.0
  */
 

@@ -1,5 +1,9 @@
 # Hardware Identification Addon
 
+[![npm version](https://badge.fury.io/js/hardware-identification-addon.svg)](https://badge.fury.io/js/hardware-identification-addon)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue.svg)](https://github.com/jepnoda/hardware-identification-addon)
+
 A powerful and easy-to-use Node.js C++ addon for retrieving hardware identification information on Windows platform. This addon provides access to various hardware identifiers including CPU ID, motherboard serial, BIOS serial, disk serials, and MAC addresses.
 
 ## Features
@@ -12,27 +16,28 @@ A powerful and easy-to-use Node.js C++ addon for retrieving hardware identificat
 - 🔐 **Hardware Fingerprint** - Generate unique hardware fingerprint
 - 📊 **Combined Information** - Get all hardware info at once
 - 🛡️ **Error Handling** - Robust error handling and validation
-- 📝 **TypeScript Ready** - Includes TypeScript definitions (can be added)
+- 📝 **TypeScript Ready** - Includes TypeScript definitions
+- 🚀 **ES Module Support** - Works with both CommonJS and ES modules
+- ⚡ **Native Performance** - C++ implementation for optimal speed
 
 ## Installation
+
+```bash
+npm install hardware-identification-addon
+```
 
 ### Prerequisites
 
 - Node.js 14.0.0 or higher
-- Python (for node-gyp)
+- Windows operating system (win32)
+- Python (for building native modules)
 - Visual Studio Build Tools (Windows)
 
-### Install Dependencies
-
-```bash
-# Install the addon
-npm install
-
-# Build the native addon
-npm run build
-```
+**Note**: This package will automatically build the native addon during installation.
 
 ## Quick Start
+
+### CommonJS (require)
 
 ```javascript
 const hardwareId = require('hardware-identification-addon');
@@ -47,6 +52,37 @@ if (hardwareId.initialize()) {
     hardwareId.cleanup();
 } else {
     console.error('Failed to initialize hardware identification');
+}
+```
+
+### ES Modules (import)
+
+```javascript
+// Named imports
+import { initialize, getCpuId, getHardwareFingerprint, cleanup } from 'hardware-identification-addon';
+
+if (initialize()) {
+    console.log('CPU ID:', getCpuId());
+    console.log('Hardware Fingerprint:', getHardwareFingerprint());
+    cleanup();
+}
+
+// Or using the class
+import { HardwareId } from 'hardware-identification-addon';
+
+const hwId = new HardwareId();
+if (hwId.initialize()) {
+    const allInfo = hwId.getAllHardwareInfo();
+    console.log('All hardware info:', allInfo);
+    hwId.cleanup();
+}
+
+// Or default import
+import hardwareId from 'hardware-identification-addon';
+
+if (hardwareId.initialize()) {
+    console.log('Summary:', hardwareId.getHardwareSummary());
+    hardwareId.cleanup();
 }
 ```
 
